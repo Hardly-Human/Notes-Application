@@ -67,7 +67,22 @@ const listNotes = () => {
 	});
 };
 
-const readNote = (title) => {};
+const readNote = (title) => {
+	const notes = getNotes();
+
+	const readingNote = notes.filter((note) => title === note.title);
+
+	if (readingNote.length === 0) {
+		console.log(
+			chalk.red.inverse(
+				"Note with given Title not Exists..Try differnet title.."
+			)
+		);
+		return;
+	}
+	console.log(`Title : ${readingNote[0].title}`);
+	console.log(`Body : ${readingNote[0].body}`);
+};
 
 // tests
 
