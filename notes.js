@@ -15,9 +15,6 @@ const savesNotes = (notes) => {
 	fs.writeFileSync("./notes.json", notesJSON);
 };
 
-// create a note.........
-// add..
-
 const addNote = (title, body) => {
 	let notes = getNotes();
 
@@ -32,8 +29,8 @@ const addNote = (title, body) => {
 		return;
 	}
 	newNote = {
-		title: title,
-		body: body,
+		title,
+		body,
 	};
 	notes.push(newNote);
 	savesNotes(notes);
