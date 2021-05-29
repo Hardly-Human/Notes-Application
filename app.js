@@ -1,5 +1,3 @@
-console.log("Notes Application");
-
 const yargs = require("yargs");
 const utils = require("./notes.js");
 
@@ -34,8 +32,7 @@ yargs.command({
 		},
 	},
 	handler: function (argv) {
-		console.log("removing a Note!!");
-		console.log(argv.title);
+		utils.removeNote(argv.title);
 	},
 });
 
@@ -43,7 +40,7 @@ yargs.command({
 	command: "list",
 	describe: "list a Notes.",
 	handler: function (argv) {
-		console.log("listing all Notes!!");
+		utils.listNotes();
 	},
 });
 
@@ -58,8 +55,7 @@ yargs.command({
 		},
 	},
 	handler: function (argv) {
-		console.log("Reading a Note!!");
-		console.log(argv.title);
+		utils.readNote(argv.title);
 	},
 });
 

@@ -30,16 +30,44 @@ const addNote = (title, body) => {
 			)
 		);
 		return;
-	} else {
-		newNote = {
-			title: title,
-			body: body,
-		};
-		notes.push(newNote);
-		savesNotes(notes);
-		console.log(chalk.green.inverse("Note added Successfully.."));
 	}
+	newNote = {
+		title: title,
+		body: body,
+	};
+	notes.push(newNote);
+	savesNotes(notes);
+	console.log(chalk.green.inverse("Note added Successfully.."));
 };
+
+const removeNote = (title) => {
+	let notes = getNotes();
+
+	const removingNote = notes.filter((note) => note.title !== title);
+
+	if (removingNote.length === notes.length) {
+		console.log(
+			chalk.red.inverse("Cannot find any note with given title...")
+		);
+		return;
+	}
+	savesNotes(removingNote);
+	console.log(chalk.green.inverse("Note Successfully Deleted.."));
+};
+
+const listNotes = () => {
+	const notes = getNotes();
+	if (notes.length === 0) {
+		console.log(chalk.blue.inverse("No Notes Yet!!!"));
+		return;
+	}
+	console.log(chalk.green.inverse("* * * All Notes * * *"));
+	notes.forEach((note) => {
+		console.log(chalk.yellow.inverse(` ${note.title} `));
+	});
+};
+
+const readNote = (title) => {};
 
 // tests
 
@@ -63,4 +91,7 @@ const addNote = (title, body) => {
 
 module.exports = {
 	addNote: addNote,
+	removeNote: removeNote,
+	listNotes: listNotes,
+	readNote: readNote,
 };
